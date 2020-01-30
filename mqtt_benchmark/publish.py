@@ -69,6 +69,8 @@ class Publish(Thread):
                 LOG.info(self.sensors)
                 for s in self.sensors:
                        
+                    sensor_id = s.split('/')[0]
+                    measure_type = s.split('/')[1]
                     modified_message = self.message
                     
                     if self.senml == True :
@@ -76,14 +78,13 @@ class Publish(Thread):
                         message_as_json = json.loads(self.message)
                             
                         for x in message_as_json["senml"]:
-                            x["bn"]=s
-                            x["v"]=self.oscillatoryFunc(x["n"])
+                            x["bn"]=sensor_id
+                            x["n"]=measure_type
+                            x["v"]=self.oscillatoryFunc(measure_type)
                             LOG.debug(x)
                         
                         modified_message = json.dumps(message_as_json["senml"])    
-                        LOG.debug("Publishing")
-                        LOG.debug(modified_message)
-                        
+                        LOG.debug("Publishing : {}".format(modified_message))                        
                     
                     self.push_client.publish(self.topic, modified_message, qos=self.qos)
             
