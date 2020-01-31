@@ -78,7 +78,7 @@ class Publish(Thread):
                         message_as_json = json.loads(self.message)
                             
                         for x in message_as_json["senml"]:
-                            x["bn"]=sensor_id
+                            x["n"]=sensor_id
                             x["v"]=self.oscillatoryFunc(measure_type)
                             LOG.debug(x)
                         

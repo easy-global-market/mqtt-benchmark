@@ -19,7 +19,7 @@ mqtt-bench publish --host 192.168.99.100 --port 1883 --topic "test" --qos 0 --th
 ## Publish to mqtt bridge
 
 ```sh
-mqtt-bench publish --host 127.0.0.1 --port 1883 --topic "test" --qos 0 --thread-num 10 --publish-num 10 --amplitude 5000 --message '{"senml" : [{"bn":"urn:sosa:Sensor:00sfsf08","n":"incoming","u":"count","v":1200}]}' --senml --sensors urn:sosa:Sensor:diatomicAA/incoming urn:sosa:Sensor:diatomicBB/outgoing
+mqtt-bench publish --host 127.0.0.1 --port 1883 --topic "test" --qos 0 --thread-num 1 --publish-num 1 --amplitude 5000 --message '{"senml" : [{"n":"urn:sosa:Sensor:00sfsf08","u":"count","v":1200}]}' --senml --sensors urn:sosa:Sensor:diatomicAA/incoming urn:sosa:Sensor:diatomicBB/outgoing
 ```
 
 Please note that sensors have to be declared with the form `sensor_id/measure_type`.
